@@ -1,0 +1,13 @@
+opam-version: "1"
+maintainer: "nicolas.marti.japon@gmail.com"
+build: [
+  ["./configure"
+     "-camlp5dir" "%{lib}%/camlp5"
+     "-lablgtkdir" "%{lib}%/lablgtk2"
+     "--prefix" "%{prefix}%"
+     "-docdir" "%{doc}%"]
+  ["%{make}%" "world"]
+  ["%{make}%" "install"]
+]
+depends: ["camlp5" "lablgtk"]
+patches: ["coq.patch"]

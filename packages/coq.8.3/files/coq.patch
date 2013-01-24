@@ -1,0 +1,11 @@
+--- coq.8.3/configure	2012-09-26 00:18:21.000000000 +0900
++++ coq.8.3-patched/configure	2013-01-24 13:08:14.187822876 +0900
+@@ -638,7 +638,7 @@
+             no)  LABLGTKLIB=+lablgtk2                   # Pour le message
+                  LABLGTKINCLUDES="-I $LABLGTKLIB";;     # Pour le makefile
+             yes) LABLGTKLIB="$lablgtkdir"               # Pour le message
+-                 LABLGTKINCLUDES="-I \"$LABLGTKLIB\"";; # Pour le makefile
++                 LABLGTKINCLUDES="-I $LABLGTKLIB";; # Pour le makefile
+         esac;;
+     no) LABLGTKINCLUDES="";;
+ esac
