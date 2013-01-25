@@ -1,0 +1,42 @@
+--- why-2.31/configure.in	2012-07-20 03:33:10.000000000 +0900
++++ why-2.31-patched/configure.in	2013-01-25 15:29:09.691327704 +0900
+@@ -105,7 +105,7 @@
+ 
+ # Ocaml library path
+ # old way: OCAMLLIB=`$OCAMLC -v | tail -1 | cut -f 4 -d ' ' | tr -d '\\r'`
+-OCAMLLIB=`$OCAMLC -where | tr -d '\\r'`
++OCAMLLIB=%{lib%}
+ echo "ocaml library path is $OCAMLLIB"
+ 
+ 
+@@ -225,7 +225,7 @@
+ 
+ LOCALOCAMLGRAPH=no
+ 
+-AC_CHECK_FILE($OCAMLLIB/ocamlgraph/graph.cmi,OCAMLGRAPH=yes,OCAMLGRAPH=no)
++AC_CHECK_FILE(%{lib}%/ocamlgraph/graph.cmi,OCAMLGRAPH=yes,OCAMLGRAPH=no)
+  if test "$OCAMLGRAPH" = no ; then
+     AC_CHECK_FILE(ocamlgraph/src/sig.mli,OCAMLGRAPH=yes,OCAMLGRAPH=no)
+     if test "$OCAMLGRAPH" = no ; then
+@@ -236,7 +236,7 @@
+       LOCALOCAMLGRAPH=yes
+     fi
+  else
+-    OCAMLGRAPHLIB="-I +ocamlgraph"
++    OCAMLGRAPHLIB="-I %{lib}%/ocamlgraph"
+     OCAMLGRAPHVER=" in Ocaml lib, subdir ocamlgraph"
+  fi
+ 
+@@ -252,10 +252,10 @@
+ fi
+ 
+ # checking for lablgtk2
+-AC_CHECK_FILE($OCAMLLIB/lablgtk2/lablgtk.cma,LABLGTK2=yes,LABLGTK2=no)
++AC_CHECK_FILE(%{lib}%/lablgtk2/lablgtk.cma,LABLGTK2=yes,LABLGTK2=no)
+ # AC_CHECK_PROG(LABLGTK2,lablgtk2,yes,no) not always available (Win32)
+ if test "$LABLGTK2" = yes ; then
+-      INCLUDEGTK2="-I +lablgtk2"
++      INCLUDEGTK2="-I %{lib}%/lablgtk2"
+ fi
+ 
+ AC_CHECK_PROG(OCAMLWEB,ocamlweb,ocamlweb,true)
