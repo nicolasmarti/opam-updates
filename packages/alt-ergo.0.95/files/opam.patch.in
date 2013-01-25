@@ -1,0 +1,34 @@
+--- alt-ergo-0.94/configure.in	2011-12-07 18:37:55.000000000 +0900
++++ alt-ergo-0.94-patched/configure.in	2013-01-25 15:14:38.686277721 +0900
+@@ -75,7 +75,7 @@
+ 
+ #looking for ocamlgraph library
+ 
+-AC_CHECK_FILE($OCAMLLIB/ocamlgraph/graph.cmi,OCAMLGRAPH=yes,OCAMLGRAPH=no)
++AC_CHECK_FILE(%{lib}%//ocamlgraph/graph.cmi,OCAMLGRAPH=yes,OCAMLGRAPH=no)
+ if test "$OCAMLGRAPH" = no ; then
+    AC_CHECK_FILE($OCAMLLIB/graph.cmi,OCAMLGRAPH=yes,OCAMLGRAPH=no)
+    if test "$OCAMLGRAPH" = no ; then	
+@@ -84,7 +84,7 @@
+ 	OCAMLGRAPHLIB=""
+    fi
+ else
+-   OCAMLGRAPHLIB="-I +ocamlgraph"
++   OCAMLGRAPHLIB="-I %{lib}%/ocamlgraph"
+ fi
+ 
+ # then we look for ocamlopt; if not present, we issue a warning
+@@ -165,11 +165,11 @@
+ dnl    fi      
+ dnl fi
+ 
+-AC_CHECK_FILE($OCAMLLIB/lablgtk2/lablgtksourceview2.cmxa,LABLGTK2=yes,LABLGTK2=no)
++AC_CHECK_FILE(%{lib}%//lablgtk2/lablgtksourceview2.cmxa,LABLGTK2=yes,LABLGTK2=no)
+ if test "$LABLGTK2" = no ; then
+       AC_MSG_RESULT(Will not be able to compile GUI. Please install the *liblablgtksourceview2-ocaml-dev* Debian package - or use the GODI caml package system *http://godi.ocaml-programming.de/* - or compile from sources *http://wwwfun.kurims.kyoto-u.ac.jp/soft/lsl/lablgtk.html*)
+ else
+-   LABLGTK2LIB="-I +lablgtk2 -I +threads"
++   LABLGTK2LIB="-I %{lib}%/lablgtk2 -I +threads"
+ fi
+ 
+ AC_CHECK_PROG(OCAMLWEB,ocamlweb,ocamlweb,true)
